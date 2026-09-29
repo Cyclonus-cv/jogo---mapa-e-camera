@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://mnxisi8a5mk3"]
+
+[ext_resource type="Script" uid="uid://coeu1u63rqwd7" path="res://Scripts/alvo.gd" id="1_ec55v"]
+[ext_resource type="Texture2D" uid="uid://cb71j1u6rk2qi" path="res://arte/tilemap_packed.png" id="2_mk8dv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35dwr"]
+atlas = ExtResource("2_mk8dv")
+region = Rect2(256, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01tje"]
+atlas = ExtResource("2_mk8dv")
+region = Rect2(272, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3yobo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35dwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01tje")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yobo"]
+size = Vector2(14, 16)
+
+[node name="Alvo" type="Area2D" unique_id=11039288]
+script = ExtResource("1_ec55v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=921760265]
+sprite_frames = SubResource("SpriteFrames_3yobo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=545322352]
+shape = SubResource("RectangleShape2D_3yobo")
+
+[node name="Label" type="Label" parent="." unique_id=465294477]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Parabéns"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

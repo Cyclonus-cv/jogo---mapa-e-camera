@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bdd62df5p2wei"]
+
+[ext_resource type="Script" uid="uid://clemio88nhl8s" path="res://Scripts/player.gd" id="1_unwft"]
+[ext_resource type="Texture2D" uid="uid://cb71j1u6rk2qi" path="res://arte/tilemap_packed.png" id="2_kthid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unwft"]
+atlas = ExtResource("2_kthid")
+region = Rect2(256, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xojfc"]
+atlas = ExtResource("2_kthid")
+region = Rect2(256, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15dsx"]
+atlas = ExtResource("2_kthid")
+region = Rect2(272, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sh265"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unwft")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xojfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15dsx")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(13, 14)
+
+[node name="Player" type="CharacterBody2D" unique_id=1873828736]
+script = ExtResource("1_unwft")
+
+[node name="Animacao" type="AnimatedSprite2D" parent="." unique_id=1457230464]
+sprite_frames = SubResource("SpriteFrames_sh265")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="Corpo" type="CollisionShape2D" parent="." unique_id=789510980]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Camera" type="Camera2D" parent="." unique_id=655097840]
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 600
+limit_bottom = 300
+position_smoothing_enabled = true
